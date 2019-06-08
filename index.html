@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="test_speed.css">
+
+    <script src="jquery-3.4.1.min.js"></script>  
+
+
+</head>
+<body onload="document.getElementById('input_text').focus()">
+    <!-- step1基本資料 -->
+    <div id="step_1_div" class="container center">
+        <h2>介面視認性實驗</h2>
+        <h5>您好，這是國立臺北科技學互動設計系研究團隊，目前進行<span class="red">改善介面視認性實驗</span>。<br>
+            本問卷以不記名方式填答，調查只做研究使用，請安心填寫。<br>  
+            在此感謝您的熱心與配合，為使用者介面改善研究進一份心力：）</h5>
+        <br>
+        <h3>請選擇基本資料</h3>
+        <form>
+            <div class="col-xs-12 col-md-12">
+                1. 性別: 
+                <input name="sex" type="radio" id="sex_m" value="1"><label for="sex_m">  男</label>
+                <input name="sex" type="radio" id="sex_f" value="2"><label for="sex_f">  女</label> 
+            </div>
+            <div class="col-xs-12 col-md-12">
+                2. 年齡: 
+                <input name="age" type="radio" id="age_1" value="1"><label for="age_1">  30歲(含)以下</label>
+                <input name="age" type="radio" id="age_2" value="2"><label for="age_2">  31-50歲</label> 
+                <input name="age" type="radio" id="age_3" value="3"><label for="age_3">  51歲(含)以上</label> 
+            </div>   
+            <div class="col-xs-12 col-md-12">
+                3. 主要學經歷: 
+                <input name="edu" type="radio" id="edu_1" value="1"><label for="edu_1">  文科</label>
+                <input name="edu" type="radio" id="edu_2" value="2"><label for="edu_2">  理科</label> 
+                <input name="edu" type="radio" id="edu_3" value="3"><label for="edu_3">  文理科都有</label>
+                <input name="edu" type="radio" id="edu_4" value="4"><label for="edu_4">  其他</label> 
+            </div>  
+            <div class="col-xs-12 col-md-12">
+                4. 平時接觸使用電腦頻率: 
+                <input name="use" type="radio" id="use_1" value="1"><label for="use_1">  經常</label>
+                <input name="use" type="radio" id="use_2" value="2"><label for="use_2">  偶爾</label> 
+                <input name="use" type="radio" id="use_3" value="3"><label for="use_3">  很少</label>
+            </div>  
+        </form>       
+
+
+        <h5>
+            為確保實驗有效性，請使用<span class='red'>桌機</span>或<span class='red'>筆電電腦</span>，<br>
+            盡可能<span class='red'>即時</span>與<span class="red">準確地輸入</span>答案。<br>
+            實驗任務是<span class="red">輸入</span>圖片裡四組數值中，<span class="red">最高之數值</span>，<br>
+            答對方可按下一題，總共有30題，<br>
+
+        </h5>
+
+        <input id="start_btn" data-test_number="1" class="btn btn-primary" type="button" name="start_btn" value="開始進行實驗">
+    </div>
+
+    <!-- step2題目開始 -->
+    <div id="step_2_div" style="display: none;">
+        <div id="box" class="">
+            <span id="tag1" class=""><!-- append --></span>
+            <span id="tag2" class=""><!-- append --></span>
+            <span id="tag3" class=""><!-- append --></span>
+            <span id="tag4" class=""><!-- append --></span>
+        </div>
+
+        <div class="center">已完成：（ <span id="test_number">0</span> / 30 ）</div>
+        <div class="center">
+            <div id="next_btn_div" class="">
+                <!-- append -->
+            </div>
+
+            <div id="input_div" class="">
+                <input id="input_text" data-test_number="1" class="form-control col-md-2" type="text" name="input_text" placeholder="請輸入圖中最大值">
+                <input id="check_btn" data-test_number="1" class="btn btn-primary" type="button" name="check_btn" value="送出">    
+            </div>
+
+            <span id="notice" class=""></span>
+
+        </div>
+
+        <div class="stopwatch"><!-- append --></div>
+        <!-- append -->
+        <input type="hidden" name="test_time_1_wrong" value="0">
+        <input type="hidden" name="test_time_2_wrong" value="0">
+        <input type="hidden" name="test_time_3_wrong" value="0">
+        <input type="hidden" name="test_time_4_wrong" value="0">
+        <input type="hidden" name="test_time_5_wrong" value="0">
+        <input type="hidden" name="test_time_6_wrong" value="0">
+        <input type="hidden" name="test_time_7_wrong" value="0">
+        <input type="hidden" name="test_time_8_wrong" value="0">
+        <input type="hidden" name="test_time_9_wrong" value="0">
+        <input type="hidden" name="test_time_10_wrong" value="0">
+        <input type="hidden" name="test_time_11_wrong" value="0">
+        <input type="hidden" name="test_time_12_wrong" value="0">
+        <input type="hidden" name="test_time_13_wrong" value="0">
+        <input type="hidden" name="test_time_14_wrong" value="0">
+        <input type="hidden" name="test_time_15_wrong" value="0">
+        <input type="hidden" name="test_time_16_wrong" value="0">
+        <input type="hidden" name="test_time_17_wrong" value="0">
+        <input type="hidden" name="test_time_18_wrong" value="0">
+        <input type="hidden" name="test_time_19_wrong" value="0">
+        <input type="hidden" name="test_time_20_wrong" value="0">
+        <input type="hidden" name="test_time_21_wrong" value="0">
+        <input type="hidden" name="test_time_22_wrong" value="0">
+        <input type="hidden" name="test_time_23_wrong" value="0">
+        <input type="hidden" name="test_time_24_wrong" value="0">
+        <input type="hidden" name="test_time_25_wrong" value="0">
+        <input type="hidden" name="test_time_26_wrong" value="0">
+        <input type="hidden" name="test_time_27_wrong" value="0">
+        <input type="hidden" name="test_time_28_wrong" value="0">
+        <input type="hidden" name="test_time_29_wrong" value="0">
+        <input type="hidden" name="test_time_30_wrong" value="0">
+    </div>
+    
+    <!-- step3結束 -->
+    <div id="step_3_div"  style="display: none; margin: auto;">
+        <h2>實驗結束，感謝您的協助:)</h2>
+    </div>
+
+</body>
+
+<script src="test_speed.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+<script type="text/javascript">
+    var test_data="";
+
+    // all_test_datas
+    var result = 
+        [
+          {
+            "no": 1,
+            "bg": 1,
+            "tagStyle": 1,
+            "tag1": 2.35,
+            "tag2": 1.06,
+            "tag3": 0.98,
+            "tag4": 1.56,
+            "max_tag": 1
+          },
+          {
+            "no": 2,
+            "bg": 1,
+            "tagStyle": 1,
+            "tag1": 1.78,
+            "tag2": 1.89,
+            "tag3": 1.23,
+            "tag4": 0.53,
+            "max_tag": 2
+          },
+          {
+            "no": 3,
+            "bg": 1,
+            "tagStyle": 1,
+            "tag1": 2.67,
+            "tag2": 1.39,
+            "tag3": 3.03,
+            "tag4": 1.73,
+            "max_tag": 3
+          },
+          {
+            "no": 4,
+            "bg": 1,
+            "tagStyle": 1,
+            "tag1": 1.39,
+            "tag2": 2.42,
+            "tag3": 1.94,
+            "tag4": 2.68,
+            "max_tag": 4
+          },
+          {
+            "no": 5,
+            "bg": 1,
+            "tagStyle": 1,
+            "tag1": 1.85,
+            "tag2": 0.37,
+            "tag3": 1.2,
+            "tag4": 0.73,
+            "max_tag": 1
+          },
+          {
+            "no": 6,
+            "bg": 1,
+            "tagStyle": 2,
+            "tag1": 2.35,
+            "tag2": 1.06,
+            "tag3": 0.98,
+            "tag4": 1.56,
+            "max_tag": 1
+          },
+          {
+            "no": 7,
+            "bg": 1,
+            "tagStyle": 2,
+            "tag1": 1.78,
+            "tag2": 1.89,
+            "tag3": 1.23,
+            "tag4": 0.53,
+            "max_tag": 2
+          },
+          {
+            "no": 8,
+            "bg": 1,
+            "tagStyle": 2,
+            "tag1": 2.67,
+            "tag2": 1.39,
+            "tag3": 3.03,
+            "tag4": 1.73,
+            "max_tag": 3
+          },
+          {
+            "no": 9,
+            "bg": 1,
+            "tagStyle": 2,
+            "tag1": 1.39,
+            "tag2": 2.42,
+            "tag3": 1.94,
+            "tag4": 2.68,
+            "max_tag": 4
+          },
+          {
+            "no": 10,
+            "bg": 1,
+            "tagStyle": 2,
+            "tag1": 0.33,
+            "tag2": 1.85,
+            "tag3": 1.2,
+            "tag4": 0.73,
+            "max_tag": 2
+          },
+          {
+            "no": 11,
+            "bg": 1,
+            "tagStyle": 3,
+            "tag1": 2.35,
+            "tag2": 1.06,
+            "tag3": 0.98,
+            "tag4": 1.56,
+            "max_tag": 1
+          },
+          {
+            "no": 12,
+            "bg": 1,
+            "tagStyle": 3,
+            "tag1": 1.78,
+            "tag2": 1.89,
+            "tag3": 1.23,
+            "tag4": 0.53,
+            "max_tag": 2
+          },
+          {
+            "no": 13,
+            "bg": 1,
+            "tagStyle": 3,
+            "tag1": 2.67,
+            "tag2": 1.39,
+            "tag3": 3.03,
+            "tag4": 1.73,
+            "max_tag": 3
+          },
+          {
+            "no": 14,
+            "bg": 1,
+            "tagStyle": 3,
+            "tag1": 1.39,
+            "tag2": 2.42,
+            "tag3": 1.94,
+            "tag4": 2.68,
+            "max_tag": 4
+          },
+          {
+            "no": 15,
+            "bg": 1,
+            "tagStyle": 3,
+            "tag1": 1.2,
+            "tag2": 0.37,
+            "tag3": 1.85,
+            "tag4": 0.73,
+            "max_tag": 3
+          },
+          {
+            "no": 16,
+            "bg": 2,
+            "tagStyle": 1,
+            "tag1": 2.35,
+            "tag2": 1.06,
+            "tag3": 0.98,
+            "tag4": 1.56,
+            "max_tag": 1
+          },
+          {
+            "no": 17,
+            "bg": 2,
+            "tagStyle": 1,
+            "tag1": 1.78,
+            "tag2": 1.89,
+            "tag3": 1.23,
+            "tag4": 0.53,
+            "max_tag": 2
+          },
+          {
+            "no": 18,
+            "bg": 2,
+            "tagStyle": 1,
+            "tag1": 2.67,
+            "tag2": 1.39,
+            "tag3": 3.03,
+            "tag4": 1.73,
+            "max_tag": 3
+          },
+          {
+            "no": 19,
+            "bg": 2,
+            "tagStyle": 1,
+            "tag1": 1.39,
+            "tag2": 2.42,
+            "tag3": 1.94,
+            "tag4": 2.68,
+            "max_tag": 4
+          },
+          {
+            "no": 20,
+            "bg": 2,
+            "tagStyle": 1,
+            "tag1": 1.45,
+            "tag2": 0.37,
+            "tag3": 1.2,
+            "tag4": 1.85,
+            "max_tag": 4
+          },
+          {
+            "no": 21,
+            "bg": 2,
+            "tagStyle": 2,
+            "tag1": 2.35,
+            "tag2": 1.06,
+            "tag3": 0.98,
+            "tag4": 1.56,
+            "max_tag": 1
+          },
+          {
+            "no": 22,
+            "bg": 2,
+            "tagStyle": 2,
+            "tag1": 1.78,
+            "tag2": 1.89,
+            "tag3": 1.23,
+            "tag4": 0.53,
+            "max_tag": 2
+          },
+          {
+            "no": 23,
+            "bg": 2,
+            "tagStyle": 2,
+            "tag1": 2.67,
+            "tag2": 1.39,
+            "tag3": 3.03,
+            "tag4": 1.73,
+            "max_tag": 3
+          },
+          {
+            "no": 24,
+            "bg": 2,
+            "tagStyle": 2,
+            "tag1": 1.39,
+            "tag2": 2.42,
+            "tag3": 1.94,
+            "tag4": 2.68,
+            "max_tag": 4
+          },
+          {
+            "no": 25,
+            "bg": 2,
+            "tagStyle": 2,
+            "tag1": 1.85,
+            "tag2": 0.37,
+            "tag3": 1.2,
+            "tag4": 0.73,
+            "max_tag": 1
+          },
+          {
+            "no": 26,
+            "bg": 2,
+            "tagStyle": 3,
+            "tag1": 2.35,
+            "tag2": 1.06,
+            "tag3": 0.98,
+            "tag4": 1.56,
+            "max_tag": 1
+          },
+          {
+            "no": 27,
+            "bg": 2,
+            "tagStyle": 3,
+            "tag1": 1.78,
+            "tag2": 1.89,
+            "tag3": 1.23,
+            "tag4": 0.53,
+            "max_tag": 2
+          },
+          {
+            "no": 28,
+            "bg": 2,
+            "tagStyle": 3,
+            "tag1": 2.67,
+            "tag2": 1.39,
+            "tag3": 3.03,
+            "tag4": 1.73,
+            "max_tag": 3
+          },
+          {
+            "no": 29,
+            "bg": 2,
+            "tagStyle": 3,
+            "tag1": 1.39,
+            "tag2": 2.42,
+            "tag3": 1.94,
+            "tag4": 2.68,
+            "max_tag": 4
+          },
+          {
+            "no": 30,
+            "bg": 2,
+            "tagStyle": 3,
+            "tag1": 0.37,
+            "tag2": 1.85,
+            "tag3": 1.2,
+            "tag4": 0.73,
+            "max_tag": 2
+          }
+        ]
+    var no_order = [20, 11, 12, 30, 18, 8, 26, 28, 13, 10, 15, 7, 1, 9, 22, 3, 6, 27, 2, 24, 4, 29, 23, 16, 25, 21, 19, 17, 14, 5];
+
+    // 跑題目
+    function test_render(test_number){
+        console.log(test_number)
+        $('#next_btn_div').empty();
+
+        if (test_number === 31){
+            $('#input_div').hide();
+            stopwatch.stop(); //計時停
+            $('#notice').text('最後一步，請按下送出。');
+            $('.center #next_btn_div').append(function(){   // 送出
+                return '<input id="finish_btn" class="btn btn-primary" type="button" name="finish_send" value="送出結果">'
+            });     
+        } else {
+
+            for(var i in result){
+                var run_data = result.filter(function (e) { 
+                                                return e.no == no_order[test_number-1];
+                                            });
+            }
+
+            test_data = run_data[0];
+            console.log(test_data)
+            $('#box').removeAttr('class').addClass('bg_' + test_data.bg).addClass('order_' + test_data.no);
+            // $('#tag1, #tag2, #tag3, #tag4').removeAttr('data-test_number').removeAttr('class').addClass('tag tagStyle_' + test_data.tagStyle);
+            $('#tag1, #tag2, #tag3, #tag4').removeAttr('class').addClass('tag tagStyle_' + test_data.tagStyle);
+            $('#tag1').text(test_data.tag1);
+            $('#tag2').text(test_data.tag2);
+            $('#tag3').text(test_data.tag3);
+            $('#tag4').text(test_data.tag4);
+            // $('#tag'+test_data.max_tag).addClass('red').attr('data-test_number', test_number);       
+            $('#input_text').attr('data-test_number', test_number).val('');
+            $('#check_btn').attr('data-test_number', test_number);
+            $('#tag'+test_data.max_tag).addClass('red');       
+
+        }
+    }
+
+
+
+    function tmp_data(test_number){
+        $('#box').append('<input type="hidden" name="test_time_'+ test_number +'">');
+        $('input[name="test_time_'+ test_number +'"]').val($('.stopwatch')[0].innerText);
+    }
+
+    // $('#step_2_div .tag').click(function(){
+    //     console.log($(this).hasClass('red'))
+    //     if ($(this).hasClass('red')){
+            
+    //         stopwatch.stop(); //計時停
+
+    //         // var test_number = $(this).data('test_number');
+    //         var test_number = $(this)[0].dataset.test_number;
+    //         console.log(test_number)
+    //         tmp_data(test_number);
+
+    //         $('#notice').text('');
+    //         $('.center #next_btn_div').append(function(){   // 下一題
+    //             $('#next_btn_div').empty();
+    //             return '<input data-test_number="' + test_number + '" class="next_btn btn btn-primary" type="button" name="next" value="下一步">'
+    //         });
+
+    //     } else {
+    //         $('#notice').text('輸入錯誤，請再輸入一次!');
+    //         $('.center #next_btn').empty();
+    //     }
+    // });
+
+    // 開始進行實驗
+    $('#start_btn').click(function(){
+
+        if($('input:checked').length < 4){
+            alert("請確任基本資料都已填選");
+        } else {
+            var myDate = new Date(),
+                mytime = myDate.toLocaleTimeString(),     //获取当前时间
+                start_time = myDate.toLocaleString();     //获取日期与时间
+            $('body').append(function(){
+                return '<input type="hidden" name="start_time" value="'+ start_time +'">';
+            })
+
+            $('#step_1_div').hide();
+            $('#step_2_div').show();
+            //init
+            test_render(1);    //題目
+            stopwatch.start(); //計時開始
+
+        }
+    });
+
+    // 下一題
+    $('#next_btn_div').on('click', '.next_btn', function(){
+        $('#input_div').show();
+        document.getElementById('input_text').focus(); //游標input上
+        stopwatch.restart(); //計時歸零
+        stopwatch.start(); //計時開始
+        console.log($(this).data('test_number'))
+        var test_number = $(this).data('test_number');
+        test_render(test_number+1);
+
+        // 已完成題數
+        $('#test_number').text(test_number);
+
+    });
+
+    // 驗證
+    function check_valid(test_number){
+        var input_text = $('#input_text').val();
+        var max_tag = test_data.max_tag;
+        var right_tag = test_data['tag'+max_tag];
+        // console.log(right_tag)
+        if (input_text == right_tag){
+            $('#next_btn_div').show();
+            $('#input_div').hide();
+
+            stopwatch.stop(); //計時停
+            tmp_data(test_number);
+
+            $('#notice').text('');
+            $('.center #next_btn_div').append(function(){   // 下一題
+                $('#next_btn_div').empty();
+                return '<input data-test_number="' + test_number + '" class="next_btn btn btn-primary" type="button" name="next" value="下一題">';
+            });
+        } else {
+            $('#notice').text('*請輸入對的數值');
+
+            // 錯誤次數
+            var test_wrong = +$('input[name="test_time_'+test_number+'_wrong"]').val()+1; //預設０
+            $('input[name="test_time_'+test_number+'_wrong"]').val(test_wrong);
+            // console.log(test_number)
+            // console.log(test_wrong)
+        }
+    };
+
+    // 送出驗證 keyboard
+    $("input[name='input_text']").keypress(function(e){
+      code = (e.keyCode ? e.keyCode : e.which);
+      if (code == 13){
+          //targetForm是表單的ID
+          $("#check_btn").trigger('click');
+      }
+    });
+    $("#check_btn").click(function(){
+        var test_number = $(this)[0].dataset.test_number;
+        check_valid(test_number);
+    });
+
+
+    // node
+    var config = {
+        apiKey: "AIzaSyC_fUSrGJHaq9v9EL5yQyuaEBuUENu1YQM",
+        authDomain: "cheriproject-dca92.firebaseapp.com",
+        databaseURL: "https://cheriproject-dca92.firebaseio.com",
+        projectId: "cheriproject-dca92",
+        storageBucket: "cheriproject-dca92.appspot.com",
+        messagingSenderId: "835100318757"
+    };
+    firebase.initializeApp(config);
+    var questionnaire = firebase.database().ref('questionnaire');
+
+    //  送出結果 to firebase
+    $('#next_btn_div').on('click', '#finish_btn', function(){
+        var myDate = new Date(),
+            mytime = myDate.toLocaleTimeString(),     //获取当前时间
+            end_time = myDate.toLocaleString();     //获取日期与时间
+        var mem_id = myDate.getTime();  //获取当前时间(从1970.1.1开始的毫秒数)
+        $('body').append(function(){
+            return '<input type="hidden" name="end_time" value="'+ end_time +'">\
+                    <input type="hidden" name="mem_id" value="'+ mem_id +'">';
+        })
+        questionnaire.push({mem_id: $('input[name="mem_id"]').val(),
+                            sex: $('input[name="sex"]:checked').val(),
+                            age: $('input[name="age"]:checked').val(),
+                            edu: $('input[name="edu"]:checked').val(),
+                            use: $('input[name="use"]:checked').val(),
+                            start_time: $('input[name="start_time"]').val(),
+                            end_time: $('input[name="end_time"]').val(),
+                            test_time_1: $('input[name="test_time_1"]').val(),
+                            test_time_2: $('input[name="test_time_2"]').val(),
+                            test_time_3: $('input[name="test_time_3"]').val(),
+                            test_time_4: $('input[name="test_time_4"]').val(),
+                            test_time_5: $('input[name="test_time_5"]').val(),
+                            test_time_6: $('input[name="test_time_6"]').val(),
+                            test_time_7: $('input[name="test_time_7"]').val(),
+                            test_time_8: $('input[name="test_time_8"]').val(),
+                            test_time_9: $('input[name="test_time_9"]').val(),
+                            test_time_10: $('input[name="test_time_10"]').val(),
+                            test_time_11: $('input[name="test_time_11"]').val(),
+                            test_time_12: $('input[name="test_time_12"]').val(),
+                            test_time_13: $('input[name="test_time_13"]').val(),
+                            test_time_14: $('input[name="test_time_14"]').val(),
+                            test_time_15: $('input[name="test_time_15"]').val(),
+                            test_time_16: $('input[name="test_time_16"]').val(),
+                            test_time_17: $('input[name="test_time_17"]').val(),
+                            test_time_18: $('input[name="test_time_18"]').val(),
+                            test_time_19: $('input[name="test_time_19"]').val(),
+                            test_time_20: $('input[name="test_time_20"]').val(),
+                            test_time_21: $('input[name="test_time_21"]').val(),
+                            test_time_22: $('input[name="test_time_22"]').val(),
+                            test_time_23: $('input[name="test_time_23"]').val(),
+                            test_time_24: $('input[name="test_time_24"]').val(),
+                            test_time_25: $('input[name="test_time_25"]').val(),
+                            test_time_26: $('input[name="test_time_26"]').val(),
+                            test_time_27: $('input[name="test_time_27"]').val(),
+                            test_time_28: $('input[name="test_time_28"]').val(),
+                            test_time_29: $('input[name="test_time_29"]').val(),
+                            test_time_30: $('input[name="test_time_30"]').val(),
+                            test_time_1_wrong: $('input[name="test_time_1_wrong"]').val(),
+                            test_time_2_wrong: $('input[name="test_time_2_wrong"]').val(),
+                            test_time_3_wrong: $('input[name="test_time_3_wrong"]').val(),
+                            test_time_4_wrong: $('input[name="test_time_4_wrong"]').val(),
+                            test_time_5_wrong: $('input[name="test_time_5_wrong"]').val(),
+                            test_time_6_wrong: $('input[name="test_time_6_wrong"]').val(),
+                            test_time_7_wrong: $('input[name="test_time_7_wrong"]').val(),
+                            test_time_8_wrong: $('input[name="test_time_8_wrong"]').val(),
+                            test_time_9_wrong: $('input[name="test_time_9_wrong"]').val(),
+                            test_time_10_wrong: $('input[name="test_time_10_wrong"]').val(),
+                            test_time_11_wrong: $('input[name="test_time_11_wrong"]').val(),
+                            test_time_12_wrong: $('input[name="test_time_12_wrong"]').val(),
+                            test_time_13_wrong: $('input[name="test_time_13_wrong"]').val(),
+                            test_time_14_wrong: $('input[name="test_time_14_wrong"]').val(),
+                            test_time_15_wrong: $('input[name="test_time_15_wrong"]').val(),
+                            test_time_16_wrong: $('input[name="test_time_16_wrong"]').val(),
+                            test_time_17_wrong: $('input[name="test_time_17_wrong"]').val(),
+                            test_time_18_wrong: $('input[name="test_time_18_wrong"]').val(),
+                            test_time_19_wrong: $('input[name="test_time_19_wrong"]').val(),
+                            test_time_20_wrong: $('input[name="test_time_20_wrong"]').val(),
+                            test_time_21_wrong: $('input[name="test_time_21_wrong"]').val(),
+                            test_time_22_wrong: $('input[name="test_time_22_wrong"]').val(),
+                            test_time_23_wrong: $('input[name="test_time_23_wrong"]').val(),
+                            test_time_24_wrong: $('input[name="test_time_24_wrong"]').val(),
+                            test_time_25_wrong: $('input[name="test_time_25_wrong"]').val(),
+                            test_time_26_wrong: $('input[name="test_time_26_wrong"]').val(),
+                            test_time_27_wrong: $('input[name="test_time_27_wrong"]').val(),
+                            test_time_28_wrong: $('input[name="test_time_28_wrong"]').val(),
+                            test_time_29_wrong: $('input[name="test_time_29_wrong"]').val(),
+                            test_time_30_wrong: $('input[name="test_time_30_wrong"]').val()
+                    });
+        $('#step_2_div').hide();
+        $('#step_3_div').show();
+    });
+</script>
+
+
+</html>
+
+
